@@ -11,7 +11,7 @@ param location string = resourceGroup().location
 @description('SKU for the App Service Plan')
 param sku string = 'S1'
 
-@description('SKU tier for the App Service Plan')
+@description('SKU tier for the App Service Plan - test')
 param skuTier string = 'Standard'
 
 @minValue(2)
