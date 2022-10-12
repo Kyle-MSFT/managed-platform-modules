@@ -14,7 +14,7 @@ This module deploys an Azure App Service and Plan
 | `location`              | `string` | No       | Resource Location.                                                                                                                    |
 | `sku`                   | `string` | No       | SKU for the App Service Plan                                                                                                          |
 | `skuTier`               | `string` | No       | SKU tier for the App Service Plan                                                                                                     |
-| `skuCapacity`           | `int`    | No       | Capacity for the App Service Plan                                                                                                     |
+| `skuCapacity`           | `int`    | No       | Capacity for the App Service Plan - test                                                                                              |
 | `enableDeleteLock`      | `bool`   | No       | Enable lock to prevent accidental deletion                                                                                            |
 | `linuxFxVersion`        | `string` | No       | The Runtime stack of current web app                                                                                                  |
 | `clientAffinityEnabled` | `bool`   | No       | Improve performance of your stateless app by turning Affinity Cookie off, stateful apps should keep this setting on for compatibility |

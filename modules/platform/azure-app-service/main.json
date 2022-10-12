@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.11.1.770",
-      "templateHash": "3266858030488106592"
+      "templateHash": "992497141018530946"
     }
   },
   "parameters": {
@@ -42,7 +42,7 @@
       "type": "int",
       "defaultValue": 2,
       "metadata": {
-        "description": "Capacity for the App Service Plan"
+        "description": "Capacity for the App Service Plan - test"
       },
       "minValue": 2
     },

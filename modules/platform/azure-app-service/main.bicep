@@ -15,7 +15,7 @@ param sku string = 'S1'
 param skuTier string = 'Standard'
 
 @minValue(2)
-@description('Capacity for the App Service Plan')
+@description('Capacity for the App Service Plan - test')
 param skuCapacity int = 2
 
 @description('Enable lock to prevent accidental deletion')
