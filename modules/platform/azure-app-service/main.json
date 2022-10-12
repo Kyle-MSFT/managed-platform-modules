@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.11.1.770",
-      "templateHash": "992497141018530946"
+      "templateHash": "12953497212987211811"
     }
   },
   "parameters": {
@@ -35,7 +35,7 @@
       "type": "string",
       "defaultValue": "Standard",
       "metadata": {
-        "description": "SKU tier for the App Service Plan"
+        "description": "SKU tier for the App Service Plan - test"
       }
     },
     "skuCapacity": {
