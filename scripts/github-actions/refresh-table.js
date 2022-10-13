@@ -56,7 +56,7 @@ async function generateModulesTable(axios, fs, path, core) {
         const readmeLink = `[📃 Readme](${moduleRootUrl}/README.md)`;
         const docs = `${codeLink} ｜ ${readmeLink}`;
 
-        tableData.push([module, versionBadge, docs, modulePath, tags.toString()]);
+        tableData.push([module, versionBadge, docs, modulePath, JSON.stringify(tags)]);
       } catch (error) {
         core.setFailed(error);
       }
