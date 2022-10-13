@@ -1,4 +1,4 @@
-# Managed Platform Registry Modules
+# Managed Platform Registry Modules TESTTTTTTTTTTTTTT
 
 This repo contains the source code of all currently available Bicep modules in the ManagedPlatform public module registry.
 
