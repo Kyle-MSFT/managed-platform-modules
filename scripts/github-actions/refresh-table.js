@@ -64,7 +64,7 @@ async function generateModulesTable(axios, fs, path, core) {
   }
 
   function getLatestVersion(tags, module) {
-    if (tags.includes(tag => tag.name.includes(module + "/"))) {
+    if (tags.some(tag => tag.name.includes(module + "/"))) {
         // const latestTag = tags.filter(tag => tag.name.includes(module + "/"))
         // .map(tag => tag.name.split("/").pop())
         // .sort()
