@@ -71,7 +71,7 @@ async function generateModulesTable(axios, fs, path, core) {
         .pop();
         return latestTag;
     }
-    return module;
+    return tags;
 }
 
   // markdown-table is ESM only, so we cannot use require.
