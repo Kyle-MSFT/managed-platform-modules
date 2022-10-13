@@ -40,8 +40,8 @@ async function generateModulesTable(axios, fs, path, core) {
       const versionListUrl = `https://modulesregistryui.azurecr.io/v2/bicep/${modulePath}/tags/list`;
 
       try {
-        const versionListResponse = await axios.get(versionListUrl);
-        const latestVersion = versionListResponse.data.tags.sort().at(-1);
+        //const versionListResponse = await axios.get(versionListUrl);
+        const latestVersion = "TEST";//versionListResponse.data.tags.sort().at(-1);
         const badgeUrl = `https://img.shields.io/badge/managed-platform-${latestVersion}-blue`;
 
         core.debug(badgeUrl.href);
@@ -49,7 +49,7 @@ async function generateModulesTable(axios, fs, path, core) {
         const module = `\`${modulePath}\``;
         const versionBadge = `<a href="${versionListUrl}"><image src="${badgeUrl}"></a>`;
 
-        const moduleRootUrl = `https://github.com/danielscholl/managed-platform-modules/blob/main/modules/${modulePath}`;
+        const moduleRootUrl = `https://github.com/Kyle-MSFT/managed-platform-modules/blob/main/modules/${modulePath}`;
         const readmeLink = `[📃 Readme](${moduleRootUrl}/README.md)`;
         const docs = `${readmeLink}`;
 
