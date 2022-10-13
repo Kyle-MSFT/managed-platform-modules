@@ -30,7 +30,7 @@ function getSubdirNames(fs, dir) {
 async function generateModulesTable(axios, fs, path, core) {
   const tableData = [["Module", "Version", "Docs"]];
   const moduleGroups = getSubdirNames(fs, "modules");
-  const tagsUrl = 'https://api.github.com/repos/Kyle-MSFT/managed-platform-modules/tags';
+  const tagsUrl = 'https://api.github.com/repos/danielscholl/managed-platform-modules/tags';
   const tagsResponse = await axios.get(tagsUrl);
   const tags = tagsResponse.data;
 
@@ -48,7 +48,7 @@ async function generateModulesTable(axios, fs, path, core) {
         const module = `\`${modulePath}\``;
         const versionBadge = getVersionBadge(modulePath, latestVersion);
 
-        const moduleRootUrl = `https://github.com/Kyle-MSFT/managed-platform-modules/blob/main/modules/${modulePath}`;
+        const moduleRootUrl = `https://github.com/danielscholl/managed-platform-modules/blob/main/modules/${modulePath}`;
         const codeLink = `[🦾 Code](${moduleRootUrl}/main.bicep)`;
         const readmeLink = `[📃 Readme](${moduleRootUrl}/README.md)`;
         const docs = `${codeLink} ｜ ${readmeLink}`;
@@ -66,7 +66,7 @@ async function generateModulesTable(axios, fs, path, core) {
       return `<image src="${badgeUrl}">`;
     }
     else {
-      const tagUrl = `https://github.com/Kyle-MSFT/managed-platform-modules/releases/tag/${modulePath}/${latestVersion}`;
+      const tagUrl = `https://github.com/danielscholl/managed-platform-modules/releases/tag/${modulePath}/${latestVersion}`;
       const badgeUrl = `https://img.shields.io/badge/managed--platform-${latestVersion}-blue`;
       return `<a href="${tagUrl}"><image src="${badgeUrl}"></a>`;
     }
