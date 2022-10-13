@@ -65,12 +65,14 @@ async function generateModulesTable(axios, fs, path, core) {
 
   function getLatestVersion(tags, module) {
     if (tags.includes(tag => tag.name.includes(module + "/"))) {
-        const latestTag = tags.filter(tag => tag.name.includes(module + "/"))
-        .map(tag => tag.name.split("/").pop())
-        .sort()
-        .pop();
-        return latestTag;
+        // const latestTag = tags.filter(tag => tag.name.includes(module + "/"))
+        // .map(tag => tag.name.split("/").pop())
+        // .sort()
+        // .pop();
+        // return latestTag;
+        return "in there";
     }
+    return "not in there";
 }
 
   // markdown-table is ESM only, so we cannot use require.
