@@ -42,7 +42,7 @@ async function generateModulesTable(axios, fs, path, core) {
       try {
         //const versionListResponse = await axios.get(versionListUrl);
         const latestVersion = "TEST";//versionListResponse.data.tags.sort().at(-1);
-        const badgeUrl = `https://img.shields.io/badge/managed-platform-${latestVersion}-blue`;
+        const badgeUrl = `https://img.shields.io/badge/managed--platform-${latestVersion}-blue`;
 
         core.debug(badgeUrl.href);
 
