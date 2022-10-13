@@ -50,7 +50,7 @@ async function generateModulesTable(axios, fs, path, core) {
         core.debug(badgeUrl.href);
 
         const module = `\`${modulePath}\``;
-        const versionBadge = `<a href="${tagUrl}"><image src="${badgeUrl}"></a>`;
+        const versionBadge = getVersionBadge(modulePath, latestVersion);
 
         const moduleRootUrl = `https://github.com/Kyle-MSFT/managed-platform-modules/blob/main/modules/${modulePath}`;
         const codeLink = `[🦾 Code](${moduleRootUrl}/main.bicep)`;
@@ -61,6 +61,18 @@ async function generateModulesTable(axios, fs, path, core) {
       } catch (error) {
         core.setFailed(error);
       }
+    }
+  }
+
+  function getVersionBadge(modulePath, latestVersion) {
+    if (latestVersion === undefined) {
+      const badgeUrl = `https://img.shields.io/badge/managed--platform-unknown-red`;
+      return `<image src="${badgeUrl}">`;
+    }
+    else {
+      const tagUrl = `https://github.com/Kyle-MSFT/managed-platform-modules/releases/tag/${modulePath}/${latestVersion}`;
+      const badgeUrl = `https://img.shields.io/badge/managed--platform-${latestVersion}-blue`;
+      return `<a href="${tagUrl}"><image src="${badgeUrl}"></a>`;
     }
   }
 
