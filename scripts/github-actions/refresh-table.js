@@ -31,7 +31,8 @@ async function generateModulesTable(axios, fs, path, core) {
   const tableData = [["Module", "Version", "Docs"]];
   const moduleGroups = getSubdirNames(fs, "modules");
   const tagsUrl = 'https://api.github.com/repos/Kyle-MSFT/managed-platform-modules/tags';
-  const tags = await axios.get(tagsUrl).data;
+  const tagsResponse = await axios.get(tagsUrl);
+  const tags = tagsResponse.data;
 
   for (const moduleGroup of moduleGroups) {
     var moduleGroupPath = path.join("modules", moduleGroup);
@@ -63,14 +64,13 @@ async function generateModulesTable(axios, fs, path, core) {
   }
 
   function getLatestVersion(tags, module) {
-    return "test123";
-    // if (tags.includes(tag => tag.name.includes(module + "/"))) {
-    //     const latestTag = tags.filter(tag => tag.name.includes(module + "/"))
-    //     .map(tag => tag.name.split("/").pop())
-    //     .sort()
-    //     .pop();
-    //     return latestTag;
-    // }
+    if (tags.includes(tag => tag.name.includes(module + "/"))) {
+        const latestTag = tags.filter(tag => tag.name.includes(module + "/"))
+        .map(tag => tag.name.split("/").pop())
+        .sort()
+        .pop();
+        return latestTag;
+    }
 }
 
   // markdown-table is ESM only, so we cannot use require.
