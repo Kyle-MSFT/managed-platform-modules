@@ -39,15 +39,11 @@ async function generateModulesTable(axios, fs, path, core) {
     var moduleNames = getSubdirNames(fs, moduleGroupPath);
 
     for (const moduleName of moduleNames) {
-      const modulePath = `${moduleGroup}/${moduleName}`; //https://github.com/Kyle-MSFT/managed-platform-modules/releases/tag/platform%2Fazure-app-service%2F1.0.4
+      const modulePath = `${moduleGroup}/${moduleName}`;
       
 
       try {
         const latestVersion = getLatestVersion(tags, modulePath);
-        const tagUrl = `https://github.com/Kyle-MSFT/managed-platform-modules/releases/tag/${modulePath}/${latestVersion}`;
-        const badgeUrl = `https://img.shields.io/badge/managed--platform-${latestVersion}-blue`;
-
-        core.debug(badgeUrl.href);
 
         const module = `\`${modulePath}\``;
         const versionBadge = getVersionBadge(modulePath, latestVersion);
