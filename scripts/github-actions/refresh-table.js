@@ -28,7 +28,7 @@ function getSubdirNames(fs, dir) {
  * @param {typeof import("@actions/core")} core
  */
 async function generateModulesTable(axios, fs, path, core) {
-  const tableData = [["Module", "Version", "Docs", "debug-modulename", "debug-tags"]];
+  const tableData = [["Module", "Version", "Docs"]];
   const moduleGroups = getSubdirNames(fs, "modules");
   const tagsUrl = 'https://api.github.com/repos/Kyle-MSFT/managed-platform-modules/tags';
   const tagsResponse = await axios.get(tagsUrl);
@@ -56,7 +56,7 @@ async function generateModulesTable(axios, fs, path, core) {
         const readmeLink = `[📃 Readme](${moduleRootUrl}/README.md)`;
         const docs = `${codeLink} ｜ ${readmeLink}`;
 
-        tableData.push([module, versionBadge, docs, modulePath, JSON.stringify(tags)]);
+        tableData.push([module, versionBadge, docs]);
       } catch (error) {
         core.setFailed(error);
       }
@@ -65,14 +65,12 @@ async function generateModulesTable(axios, fs, path, core) {
 
   function getLatestVersion(tags, module) {
     if (tags.some(tag => tag.name.includes(module + "/"))) {
-        // const latestTag = tags.filter(tag => tag.name.includes(module + "/"))
-        // .map(tag => tag.name.split("/").pop())
-        // .sort()
-        // .pop();
-        // return latestTag;
-        return "in there";
+        const latestTag = tags.filter(tag => tag.name.includes(module + "/"))
+        .map(tag => tag.name.split("/").pop())
+        .sort()
+        .pop();
+        return latestTag;
     }
-    return "not in there";
 }
 
   // markdown-table is ESM only, so we cannot use require.
