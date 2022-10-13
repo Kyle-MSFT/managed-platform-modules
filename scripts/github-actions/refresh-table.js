@@ -50,8 +50,9 @@ async function generateModulesTable(axios, fs, path, core) {
         const versionBadge = `<a href="${versionListUrl}"><image src="${badgeUrl}"></a>`;
 
         const moduleRootUrl = `https://github.com/Kyle-MSFT/managed-platform-modules/blob/main/modules/${modulePath}`;
+        const codeLink = `[🦾 Code](${moduleRootUrl}/main.bicep)`;
         const readmeLink = `[📃 Readme](${moduleRootUrl}/README.md)`;
-        const docs = `${readmeLink}`;
+        const docs = `${codeLink} ｜ ${readmeLink}`;
 
         tableData.push([module, versionBadge, docs]);
       } catch (error) {
