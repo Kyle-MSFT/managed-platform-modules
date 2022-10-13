@@ -30,6 +30,8 @@ function getSubdirNames(fs, dir) {
 async function generateModulesTable(axios, fs, path, core) {
   const tableData = [["Module", "Version", "Docs"]];
   const moduleGroups = getSubdirNames(fs, "modules");
+  const tagsUrl = 'https://api.github.com/repos/Kyle-MSFT/managed-platform-modules/tags';
+  const tags = await axios.get(tagsUrl).data;
 
   for (const moduleGroup of moduleGroups) {
     var moduleGroupPath = path.join("modules", moduleGroup);
@@ -40,8 +42,7 @@ async function generateModulesTable(axios, fs, path, core) {
       const versionListUrl = `https://modulesregistryui.azurecr.io/v2/bicep/${modulePath}/tags/list`;
 
       try {
-        //const versionListResponse = await axios.get(versionListUrl);
-        const latestVersion = "TEST";//versionListResponse.data.tags.sort().at(-1);
+        const latestVersion = getLatestVersion(tags, modulePath);
         const badgeUrl = `https://img.shields.io/badge/managed--platform-${latestVersion}-blue`;
 
         core.debug(badgeUrl.href);
@@ -60,6 +61,16 @@ async function generateModulesTable(axios, fs, path, core) {
       }
     }
   }
+
+  function getLatestVersion(tags, module) {
+    if (tags.some(tag => tag.name.includes(module + "/"))) {
+        const latestTag = tags.filter(tag => tag.name.includes(module + "/"))
+        .map(tag => tag.name.split("/").pop())
+        .sort()
+        .pop();
+        return latestTag;
+    }
+}
 
   // markdown-table is ESM only, so we cannot use require.
   const { markdownTable } = await import("markdown-table");
