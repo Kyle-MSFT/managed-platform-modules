@@ -39,17 +39,18 @@ async function generateModulesTable(axios, fs, path, core) {
     var moduleNames = getSubdirNames(fs, moduleGroupPath);
 
     for (const moduleName of moduleNames) {
-      const modulePath = `${moduleGroup}/${moduleName}`;
-      const versionListUrl = `https://modulesregistryui.azurecr.io/v2/bicep/${modulePath}/tags/list`;
+      const modulePath = `${moduleGroup}/${moduleName}`; //https://github.com/Kyle-MSFT/managed-platform-modules/releases/tag/platform%2Fazure-app-service%2F1.0.4
+      
 
       try {
         const latestVersion = getLatestVersion(tags, modulePath);
+        const tagUrl = `https://github.com/Kyle-MSFT/managed-platform-modules/releases/tag/${modulePath}/${latestVersion}`;
         const badgeUrl = `https://img.shields.io/badge/managed--platform-${latestVersion}-blue`;
 
         core.debug(badgeUrl.href);
 
         const module = `\`${modulePath}\``;
-        const versionBadge = `<a href="${versionListUrl}"><image src="${badgeUrl}"></a>`;
+        const versionBadge = `<a href="${tagUrl}"><image src="${badgeUrl}"></a>`;
 
         const moduleRootUrl = `https://github.com/Kyle-MSFT/managed-platform-modules/blob/main/modules/${modulePath}`;
         const codeLink = `[🦾 Code](${moduleRootUrl}/main.bicep)`;
